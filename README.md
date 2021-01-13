@@ -16,7 +16,7 @@
 ### Association 
 
 - has_many :items 
-- has_many :buyers 
+- has_many :shipping address
 
   
 ## items テーブル  
@@ -39,10 +39,11 @@
 ### Association 
 
 - belongs_to :user 
-- has_one    :buyer 
+- has_one    :shipping address 
+- has_one    :purchase 
 
   
-##  buyers テーブル 
+##  shipping address テーブル 
 | Column         | Type       | Options             | 
 | ------         | ---------- | ------------        | 
 | postal_code    | string     | null: false,        | 
@@ -59,15 +60,14 @@
 ### Association 
 
 - belongs_to :user 
-- belongs_to :item
+- has_one    :item
 
 
-<!-- 
-| token       | string     | null: false,        |
-| postal code | string     | null: false,        |
-| Prefecture  | string     | null: false,        |
-| City        | string     | null: false,        |
-| Addresses   | string     | null: false,        |
-| token       | string     | null: false,        |
-|building name| string     | null: false,        |
-|phone number | string     | null: false,        | -->
+##  purchase テーブル
+| Column         | Type       | Options             | 
+| ------         | ---------- | ------------        | 
+|  user          | references | foreign_key: true   | 
+|  item          | references | foreign_key: true   | 
+
+- has_one    :item
+- has_one    :user
