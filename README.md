@@ -2,17 +2,16 @@
   
 ## users テーブル 
 
-| Column   | Type   | Options                 | 
-| -------- | ------ | -----------             | 
-| nickname | string | null: false             | 
-| email    | string | null: false             | 
-| password | string | null: false             | 
-| password confirmation | string | null: false| 
-|first name| string | null: false             | 
-|last name | string | null: false             | 
-| first name kana       | string | null: false| 
-|  last name kana       | string | null: false| 
-|birth date| string |              null: false| 
+| Column   | Type               | Options     | 
+| -------- | ------             | ----------- | 
+| nickname             | string | null: false | 
+| email                | string | null: false | 
+| password confirmation| string | null: false | 
+| first_name           | string | null: false |            
+| last_name            | string | null: false |             
+| first_name kana      | string | null: false | 
+| last_name kana       | string | null: false | 
+| birth_date           |  date  | null: false |            
 
 ### Association 
 
@@ -20,50 +19,47 @@
 - has_many :buyers 
 
   
-## items テーブル 
+## items テーブル  
 
-| Column     | Type       | Options             | 
-| ------     | ---------- | ------------        | 
-| image      | foreign_key: true | null: false, | 
-| name       | string     | null: false,        | 
-|information | text       | null: false,        | 
-|  category  |            | null: false,        |      
-|sales status|            | null: false,        | 
-| shipping fee status |   | null: false         | 
-| prefecture |            | null: false         | 
-| scheduled delivery  |   | null: false         | 
-| price      |            | null: false,        | 
-| price half | string     | null: false,        | 
-| price out  | string     | null: false,        | 
+| Column     | Type                    | Options           | 
+| ------     | ----------              | ------------      | 
+| image      | foreign_key: true       | null: false,      | 
+| name                     | string    | null: false,      | 
+| information              | text      | null: false,      | 
+| category_id              | integer   | null: false,      |      
+| sales_status_id          | integer   | null: false,      | 
+| shipping_fee_status_id   | integer   | null: false       | 
+| prefecture_id            | integer   | null: false       | 
+| scheduled_delivery_id    | integer   | null: false       | 
+| price                    | integer   | null: false,      | 
 
-| user   | references | null: false, foreign_key: true | 
-| items  | references | null: false, foreign_key: true | 
+| users  | references | null: false, foreign_key: true | 
+
 
 ### Association 
 
 - belongs_to :user 
-- belongs_to :buyer 
+- has_one    :buyer 
 
   
 ##  buyers テーブル 
-
-| credit         | string     | null: false,        | 
-|expiration date | string     | null: false,        | 
-| security code  | string     | null: false,        | 
-|postal code     | string     | null: false,        | 
+| Column         | Type       | Options             | 
+| ------         | ---------- | ------------        | 
+| postal_code    | string     | null: false,        | 
 | prefecture     | string     | null: false,        | 
 | city           | string     | null: false,        | 
 | address        | string     | null: false,        | 
-| phone number   | string     | null: false,        | 
-| building name  | string     | null: false,        | 
+| phone_number   | string     | null: false,        | 
+| building_name  | string     |                     |
+ 
+| users  | references | null: false, foreign_key: true | 
+| items  | references | null: false, foreign_key: true | 
 
-| user   | references | null: false, foreign_key: true | 
-| room   | references | null: false, foreign_key: true | 
 
 ### Association 
 
 - belongs_to :user 
-- belongs_to :item 
+- belongs_to :item
 
 
 <!-- 
