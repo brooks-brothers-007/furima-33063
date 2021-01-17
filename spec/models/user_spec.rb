@@ -5,11 +5,23 @@ describe User do
   end  
 
   describe "ユーザー新規登録" do
+    context '新規登録がうまくいくとき' do
+      it "nickname,email,password,password_confirmation,first_name,last_name,first_name_kana,last_name_kana,birth_date
+      が存在すれば登録できる" do
+        expect(@user).to be_valid
+      end
+
+      it "passwordが6文字以上であれば登録できる" do
+        @user.password = "000000"
+        @user.password_confirmation = "000000"
+        expect(@user).to be_valid       
+      end
+    end  
+
     context '新規登録がうまくいかないとき' do
       it "nicknameが空では登録できない" do
         @user.nickname = ''  
         @user.valid?
-        binding.pry
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
     
@@ -29,6 +41,7 @@ describe User do
         @user.password = '00000'
         @user.password_confirmation = "00000"
         @user.valid?
+        binding.pry
         expect(@user.errors.full_messages).to include("Password is too short (maximum is 6 characters)")
       end
 
