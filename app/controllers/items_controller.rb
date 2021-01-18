@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
-  def index   
+  def index  
+    # @users = User.includes(:user)
   end  
 end
