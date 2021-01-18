@@ -24,7 +24,7 @@ describe User do
   #     end 
   #   end  
 
-
+  describe "ユーザー新規登録" do
     context '新規登録がうまくいかないとき' do
       it "nicknameが空では登録できない" do
         @user.nickname = ''  
@@ -42,7 +42,7 @@ describe User do
       it "passwordが空では登録できない" do
         @user.password = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password can't be blank", "Password confirmation doesn't match Password")
+        expect(@user.errors.full_messages).to include("Password can't be blank")
       end
 
       it "passwordが5文字以下であれば登録できない" do
@@ -53,7 +53,7 @@ describe User do
       end
 
       it "passwordが存在してもpassword_confirmationが空では登録できない" do
-        @user.password_confirmation = ""
+        @user.password_confirmation = " "
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end  
