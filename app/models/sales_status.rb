@@ -6,6 +6,7 @@ class Sales_Status < ActiveHash::Base
     { id: 4, name: 'やや傷や汚れあり' },
     { id: 5, name: '傷や汚れあり' },
     { id: 6, name: '全体的に状態が悪い' },
+    { id: 50, name: '--' }
   ]   
   include ActiveHash::Associations
   has_many :items

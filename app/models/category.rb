@@ -10,7 +10,8 @@ class Category < ApplicationRecord
       { id: 7, name: '家電・スマホ・カメラ' },
       { id: 8, name: 'スポーツ・レジャー' },
       { id: 9, name: 'ハンドメイド' },
-      { id: 10, name: 'その他' }
+      { id: 10, name: 'その他' },
+      { id: 50, name: '--' }
     ]
  
     include ActiveHash::Associations

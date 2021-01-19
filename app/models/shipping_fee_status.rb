@@ -2,6 +2,7 @@ class Shipping_Fee_Status < ActiveHash::Base
   self.data = [
     { id: 1, name: '着払い（購入者負担）' },   
     { id: 2, name: '送料込み（出品者負担）' },
+    { id: 50, name: '--' }
   ]
   include ActiveHash::Associations
   has_many :items
