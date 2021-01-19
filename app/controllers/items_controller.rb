@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
-  def index  
-    # @users = User.includes(:user)
+  before_action :authenticate_user!, except: :new
+  def new
   end  
+  def create  
+  end
 end
