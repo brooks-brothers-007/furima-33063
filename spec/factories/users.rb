@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :user do
-    # association :item
     nickname              {"test"}
     email                 {"test@example"}
     password              {"00test"}
