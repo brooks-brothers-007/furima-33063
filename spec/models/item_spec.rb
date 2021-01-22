@@ -59,6 +59,18 @@ describe Item do
         expect(@item.errors.full_messages).to include("Scheduled delivery Select")
       end
 
+      it "priceが空では出品できない" do
+        @item.price = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price can't be blank")
+      end
+
+      it "priceが半角数字でなければ出品できない" do
+        @item.price = '３００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price Half-width number")
+      end
+
       it "priceが￥300未満、￥10,000,000以上では出品できない" do
         @item.price = '299'
         @item.price = '10000000'
