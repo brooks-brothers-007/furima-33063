@@ -9,6 +9,7 @@ describe User do
       it "全ての情報が存在していると登録できること" do
         expect(@user).to be_valid
       end
+    end  
 
     context '新規登録がうまくいかないとき' do
       it "nicknameが空では登録できない" do
@@ -78,7 +79,6 @@ describe User do
         @user.password = '00test'
         @user.password_confirmation = "000test"
         @user.valid?
-        binding.pry
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end  
       
@@ -133,9 +133,9 @@ describe User do
       it "birth_dateが空では登録できない" do
         @user.birth_date = ''  
         @user.valid?
+
         expect(@user.errors.full_messages).to include("Birth date can't be blank")
       end
-     
     end
   end
 end
