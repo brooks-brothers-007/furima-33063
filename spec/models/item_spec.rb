@@ -71,9 +71,26 @@ describe Item do
         expect(@item.errors.full_messages).to include("Price Half-width number")
       end
 
-      it "priceが￥300未満、￥10,000,000以上では出品できない" do
-        @item.price = '299'
-        @item.price = '10000000'
+      it "priceが半角英数混合では登録できないこと" do
+        @item.price = 'test3000'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price Half-width number")
+      end
+
+      it "priceが半角英語だけでは登録できないこと" do
+        @item.price = 'test'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price Half-width number")
+      end
+
+      it "priceが￥300未満では出品できない" do
+        @item.price = 299
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price Out of setting range")
+      end
+
+      it "priceが￥10,000,000以上では出品できない" do
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price Out of setting range")
       end
