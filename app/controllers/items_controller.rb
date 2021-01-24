@@ -22,6 +22,19 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to item_path
+    else
+      render :edit
+    end
+  end
+
   private
 
   def item_params
@@ -29,4 +42,8 @@ class ItemsController < ApplicationController
       :image, :name, :information, :category_id, :sales_status_id, :shipping_fee_status_id, :prefecture_id, :scheduled_delivery_id, :price
     ).merge(user_id: current_user.id)
   end
+
+  # def set_tweet
+  #   @item = Item.find(params[:id])
+  # end
 end
