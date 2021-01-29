@@ -1,7 +1,8 @@
 class PurchasesController < ApplicationController
-  before_action :set_item
-  before_action :move_to_ibdex
   before_action :authenticate_user!
+  before_action :set_item
+  before_action :move_to_index
+
 
   def index
     @purchase_user = PurchaseUser.new
@@ -30,8 +31,8 @@ class PurchasesController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
-  def move_to_ibdex
-    redirect_to root_path if current_user.id == @item.user_id || !@item.purchase.nil?
+  def move_to_index
+      redirect_to root_path if current_user.id == @item.user_id || !@item.purchase.nil?
   end  
 
   def pay_item
