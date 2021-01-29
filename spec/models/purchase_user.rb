@@ -98,7 +98,7 @@ describe PurchaseUser do
         expect(@purchase_user.errors.full_messages).to include("User can't be blank")
       end
 
-      it 'userが紐づいていないと保存できないこと' do
+      it 'itemが紐づいていないと保存できないこと' do
         @purchase_user.item_id = nil
         @purchase_user.valid?
         expect(@purchase_user.errors.full_messages).to include("Item can't be blank")
