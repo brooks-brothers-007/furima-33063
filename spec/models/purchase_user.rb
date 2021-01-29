@@ -3,8 +3,8 @@ describe PurchaseUser do
   before do
     @item = FactoryBot.create(:item)
     @user = FactoryBot.create(:user)
-    sleep(1)
     @purchase_user = FactoryBot.build(:purchase_user, user_id: @user.id, item_id: @item.id)
+    sleep(1)
   end
 
   describe '購入情報登録' do
@@ -19,7 +19,6 @@ describe PurchaseUser do
       it 'tokenが空だと購入できないこと' do
         @purchase_user.token = nil
         @purchase_user.valid?
-        binding.pry
         expect(@purchase_user.errors.full_messages).to include("Token can't be blank")
       end
 
