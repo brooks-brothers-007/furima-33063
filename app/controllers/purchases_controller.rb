@@ -1,5 +1,6 @@
 class PurchasesController < ApplicationController
-  before_action :set_item, only: [:index, :create]
+  before_action :set_item
+  before_action :move_to_ibdex
 
   def index
     @purchase_user = PurchaseUser.new
@@ -25,6 +26,10 @@ class PurchasesController < ApplicationController
   def set_item
     @item = Item.find(params[:item_id])
   end
+
+  def move_to_ibdex
+    redirect_to root_path if current_user.id == @item.user_id || !@item.purchase.nil?
+  end  
 
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
