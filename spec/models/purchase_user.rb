@@ -12,6 +12,10 @@ describe PurchaseUser do
       it '全ての情報が存在していると登録できること' do
         expect(@purchase_user).to be_valid
       end
+      it 'building_nameが空でも登録できること' do
+        @purchase_user.building_name = ''
+        expect(@purchase_user).to be_valid
+      end  
     end
 
     context '購入がうまくいかないとき' do
