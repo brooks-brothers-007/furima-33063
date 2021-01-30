@@ -32,7 +32,15 @@ class PurchasesController < ApplicationController
   end
 
   def move_to_index
-      redirect_to root_path if current_user.id == @item.user_id || !@item.purchase.nil?
+      redirect_to root_path if current_user.id == @item.user_id || @item.purchase
+      #購入履歴があればroot_path
+      #@item.puchaseがあればroot_path
+      #@item.puchaseがnilでなければroot_path
+      
+      # @item.puchase
+      # @item.puchase.present?
+      # @item.puchase != nil
+
   end  
 
   def pay_item
