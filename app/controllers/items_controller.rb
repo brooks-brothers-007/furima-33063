@@ -22,8 +22,12 @@ class ItemsController < ApplicationController
   def show
   end
 
-  def edit
-    redirect_to item_path if current_user.id != @item.user_id && @item.purchase.nil
+  def edit    
+    # ログイン状態の出品者以外のユーザーは、URLを直接入力して出品していない商品
+    # の商品情報編集ページへ遷移しようとすると、トップページに遷移するよう修正
+    if current_user.id != @item.user_id || @item.purchase.present?
+      redirect_to root_path 
+    end
   end
 
   def update
